@@ -1,0 +1,44 @@
+<table class="table table-stripped invbody-items" cellspacing="0">
+  <thead>
+    <tr>
+      <th>Address</th>
+      <th>Port</th>
+      <th>Use SSL</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#servers}}
+    <tr>
+      <td style="width: 160px;">
+        <a on-tap="destroy:{{this}}" role="button" class='hidden-print destroy'></a>
+        <div on-click="edit" class="item">{{address}}</div>
+        <input intro="select" class="form-control hide" value="{{address}}" on-blur-enter="hide:{{this}}">
+      </td>
+      <td style="width: 85px;">
+        <div on-click="edit" class="port">{{port}}</div>
+        <input class="form-control hide" value="{{port}}" on-blur-enter="hide:{{this}}">
+      </td>
+      <td style="width: 85px;">
+         <div class="checkbox">
+          <label>
+            {{#useSSL}}
+              <span class="label label-success"><i class="glyphicon glyphicon-plus"></i></span>
+            {{/useSSL}}
+            {{^useSSL}}
+              <span class="label label-danger"><i class="glyphicon glyphicon-minus"></i></span>
+            {{/useSSL}}
+            <input type='checkbox' checked='{{useSSL}}' on-change="save:{{this}}">
+          </label>
+        </div>
+      </td>
+    </tr>
+    {{/servers}}
+
+    <tr>
+      <td class="hidden-print text-center" colspan="5">
+        <button on-click="add" class="btn btn-primary btn-sm"><i class="glyphicon glyphicon-plus"></i> Добавить</button>
+      </td>
+    </tr>
+
+  </tbody>
+</table>

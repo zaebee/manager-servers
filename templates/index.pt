@@ -1,0 +1,15 @@
+<div metal:use-macro="layout">
+  <div metal:fill-slot="content">
+        <div class="invoice-container rounded-container col-sm-8 col-sm-offset-2">
+
+          <h2 style="text-align:center;margin-bottom:30px;">${page_title}</h2>
+        
+          <div class="invbody">
+            <div class="server-list">
+              <!-- Server коллекция. Сюда будем подключать шаблон со списком серверов -->
+            </div>
+          </div>
+        </div>
+
+  </div>
+</div>
