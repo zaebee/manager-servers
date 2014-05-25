@@ -282,6 +282,9 @@ var app = app || {};
 (function (app) {
 
   app.Server = Backbone.Model.extend({
+    defaults: {
+      useSSL: false
+    },
     urlRoot: '/api/server',
     idAttribute: 'uid'
   });
@@ -295,14 +298,13 @@ var app = app || {};
 var app = app || {};
 
 (function (app) {
-  app.servers = new Ractive({
-    el: '.server-list',
-    template: JST['assets/templates/server-list.html'](),
+  app.server = new Ractive({
+    el: '.modal',
+    template: JST['assets/templates/server-add-modal.html'](),
     data: {
-      servers: new app.Servers, // наша Backbone коллекция
-
+      server: new app.Server
     },
-    adaptors: [ 'Backbone' ],
+    adapt: [ 'Backbone' ],
     transitions: {
       select: function ( t ) {
         setTimeout( function () {
@@ -313,11 +315,44 @@ var app = app || {};
     }
   });
 
+  app.servers = new Ractive({
+    el: '.server-list',
+    template: JST['assets/templates/server-list.html'](),
+    data: {
+      servers: new app.Servers, // наша Backbone коллекция
+
+    },
+    adapt: [ 'Backbone' ],
+    transitions: {
+      select: function ( t ) {
+        setTimeout( function () {
+          t.node.select();
+          t.complete();
+        }, 200 );
+      }
+    }
+  });
+
+  app.server.on({
+    save: function ( event ) {
+      var servers = app.servers.data.servers;
+      var server = this.data.server;
+      if (server.get('address') && server.get('port')) {
+        servers.add(server);
+        server.save();
+        this.set('server', new app.Server);
+        $(this.el).modal('hide');
+      }
+    },
+  });
+
   app.servers.on({
 
     // Обрабатываем нажатие на кнопку создания таска
     // в шаблоне `on-click="add"`
     add: function ( event ) {
+      $('#addServerModal').modal('show');
+      return;
       var servers = this.get('servers');
       var server = new app.Server({
         address: '0.0.0.0',

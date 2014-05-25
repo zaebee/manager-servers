@@ -1,5 +1,15 @@
 this["JST"] = this["JST"] || {};
 
+this["JST"]["assets/templates/server-add-modal.html"] = function(obj) {
+obj || (obj = {});
+var __t, __p = '', __e = _.escape;
+with (obj) {
+__p += '<div class="modal-dialog">\n  <div class="modal-content">\n    <div class="modal-header">\n      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>\n      <h4 class="modal-title">Add Server</h4>\n    </div>\n    <div class="modal-body">\n      <form class="form-inline" role="form">\n        <div class="form-group {{^server.address}}has-error{{/server.address}}">\n          <label class="sr-only" for="server-address">Address</label>\n          <input value="{{server.address}}" class="form-control" id="server-address" placeholder="enter server address">\n        </div>\n        <div class="form-group {{^server.port}}has-error{{/server.port}}">\n          <label class="sr-only" for="server-port">Port</label>\n          <input onkeypress=\'return event.charCode >= 48 && event.charCode <= 57\' value="{{server.port}}" class="form-control" id="server-port" placeholder="enter server port">\n        </div>\n        <div class="checkbox">\n          <label>\n            <input checked="{{server.useSSL}}" type="checkbox"> Use SSL\n          </label>\n        </div>\n      </form>\n    </div>\n    <div class="modal-footer">\n      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>\n      <button on-click="save" type="button" class="btn btn-primary">Save server</button>\n    </div>\n  </div><!-- /.modal-content -->\n</div><!-- /.modal-dialog -->\n';
+
+}
+return __p
+};
+
 this["JST"]["assets/templates/server-list.html"] = function(obj) {
 obj || (obj = {});
 var __t, __p = '', __e = _.escape;

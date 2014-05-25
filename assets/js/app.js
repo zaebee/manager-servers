@@ -3,6 +3,9 @@ var app = app || {};
 (function (app) {
 
   app.Server = Backbone.Model.extend({
+    defaults: {
+      useSSL: false
+    },
     urlRoot: '/api/server',
     idAttribute: 'uid'
   });
