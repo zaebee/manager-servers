@@ -16,16 +16,16 @@
       </td>
       <td style="width: 85px;">
         <div on-click="edit" class="port">{{port}}</div>
-        <input class="form-control hide" value="{{port}}" on-blur-enter="hide:{{this}}">
+        <input onkeypress='return event.charCode >= 48 && event.charCode <= 57' class="form-control hide" value="{{port}}" on-blur-enter="hide:{{this}}">
       </td>
       <td style="width: 85px;">
          <div class="checkbox">
           <label>
             {{#useSSL}}
-              <span class="label label-success"><i class="glyphicon glyphicon-plus"></i></span>
+              <span class="label label-success">yes</span>
             {{/useSSL}}
             {{^useSSL}}
-              <span class="label label-danger"><i class="glyphicon glyphicon-minus"></i></span>
+              <span class="label label-danger">no</span>
             {{/useSSL}}
             <input type='checkbox' checked='{{useSSL}}' on-change="save:{{this}}">
           </label>
