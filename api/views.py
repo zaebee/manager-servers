@@ -5,41 +5,13 @@ import transaction
 from models import DBSession, Server
 
 
-SERVERS = [
-    {
-        'id': 1,
-        'address': '0.0.0.0',
-        'port': 80,
-        'useSSL': False,
-    },
-    {
-        'id': 2,
-        'address': '127.0.0.1',
-        'port': 80,
-        'useSSL': False,
-    },
-    {
-        'id': 3,
-        'address': '192.168.1.100',
-        'port': 80,
-        'useSSL': True,
-    },
-    {
-        'id': 4,
-        'address': '192.168.1.100',
-        'port': 8000,
-        'useSSL': False,
-    },
-]
-
-
 def site_layout():
-    renderer = get_renderer("templates/layout.pt")
+    renderer = get_renderer("../templates/layout.pt")
     layout = renderer.implementation().macros['layout']
     return layout
 
 
-@view_config(renderer="templates/index.pt")
+@view_config(renderer="../templates/index.pt")
 def index_view(request):
     return {"layout": site_layout(),
             "page_title": "Server List Manager"}

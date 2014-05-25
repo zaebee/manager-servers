@@ -14,4 +14,4 @@ INSTALL
 
 
 3. run application
-`python application.py`
+`python api/application.py`

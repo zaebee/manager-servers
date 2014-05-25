@@ -17,7 +17,7 @@ def main(**settings):
     config.add_route('server', '/api/server/{uid}')
     config.add_route('servers', '/api/server')
     config.scan("views")
-    config.add_static_view('www', 'www/',
+    config.add_static_view('www', '../www/',
                           cache_max_age=86400)
     app = config.make_wsgi_app()
     return app

@@ -116,6 +116,6 @@ nbproject
 .idea
 .node_history
 
-.pyc
-.pyo
+*.pyc
+*.pyo
 .env
